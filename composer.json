@@ -1,0 +1,15 @@
+{
+    "name": "dardocam/mvc-poo",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dardo Camaño",
+            "email": "dardocam@gmail.com"
+        }
+    ],
+    "require": {}
+}
