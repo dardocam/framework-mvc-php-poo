@@ -6,7 +6,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use app\core\Application;
 
-$app = new Application(dirname(__FILE__));
+//no modificar las claves solo los valores.
+$config = array(
+    'APP_NAME' => 'Framework-PHP-POO-2024'
+);
+
+
+$app = new Application(dirname(__FILE__), $config);
 
 $app->router->get('/', 'home');
 $app->router->get('/contact', 'contact');
