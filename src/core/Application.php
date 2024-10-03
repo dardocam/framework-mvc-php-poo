@@ -7,7 +7,6 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
-    private static Application $app;
     private static string $ROOT_PATH;
     private static array $CONFIGURATION;
 
@@ -18,7 +17,6 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
-        self::$app = $this;
     }
 
     public function run()
@@ -41,9 +39,5 @@ class Application
     public static function getAPPNAME()
     {
         return self::$CONFIGURATION['APP_NAME'];
-    }
-    public static function getApp()
-    {
-        return self::$app;
     }
 }
