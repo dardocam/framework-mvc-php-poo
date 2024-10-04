@@ -23,7 +23,7 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        return $this->router->resolve();
     }
     public static function getROOTPATH()
     {
