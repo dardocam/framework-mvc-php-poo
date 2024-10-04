@@ -9,6 +9,7 @@ class Application
     public Response $response;
     private static string $ROOT_PATH;
     private static array $CONFIGURATION;
+    public static $routerExposed;
 
     public function __construct(string $rootPath, array $config)
     {
@@ -17,6 +18,7 @@ class Application
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
+        self::$routerExposed = $this->router;
     }
 
     public function run()

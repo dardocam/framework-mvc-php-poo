@@ -46,13 +46,16 @@ class Router
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
-        return call_user_func(($callback));
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0]();
+        }
+        return call_user_func($callback, $this->request);
     }
 
-    public function renderView(string $view)
+    public function renderView(string $view, $params = [])
     {
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -68,8 +71,12 @@ class Router
         include_once Application::getROOTSOURCE() . "/views/layouts/Main.php";
         return ob_get_clean(); //devuelve el contenido del buffer actual y borra el buffer de salida
     }
-    protected function renderOnlyView($view)
+    protected function renderOnlyView($view, $params)
     {
+        // $name = $params['name'];
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
         ob_start();
         $view = ucwords($view);
         include_once Application::getROOTSOURCE() . "/views/$view.php";

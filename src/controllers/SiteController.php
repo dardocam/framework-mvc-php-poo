@@ -1,12 +1,26 @@
 <?php
 
+
+
 namespace app\controllers;
 
-class SiteController
-{
+use app\core\Controller;
+use app\core\Request;
 
-    public static function handleContact()
+class SiteController extends Controller
+{
+    public function home()
     {
-        return 'Handling submitted data from controller';
+        $params = [
+            'name' => "dardocam"
+        ];
+        return $this->render('home', $params);
+    }
+
+    public static function handleContact(Request $request)
+    {
+        $body = $request->getBody();
+        var_dump($body);
+        //now you can create validations... awesome!
     }
 }
