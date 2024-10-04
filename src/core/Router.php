@@ -4,7 +4,6 @@ namespace app\core;
 
 class Router
 {
-    protected array $routes = []; //es accesible para las clases que hereden de Router
     // protected array $routes = [
     //     'get' => [
     //         '/'=> callback,
@@ -12,6 +11,8 @@ class Router
     //     ],
     //     'post' =>
     // ]; 
+    //es accesible para las clases que hereden de Router
+    protected array $routes = [];
     public Request $request;
     public Response $response;
 
@@ -24,6 +25,10 @@ class Router
     public function get($path, $callback)
     {
         $this->routes['get'][$path] = $callback;
+    }
+    public function post($path, $callback)
+    {
+        $this->routes['post'][$path] = $callback;
     }
 
     public function resolve()
@@ -58,9 +63,10 @@ class Router
     }
     protected function layoutContent()
     {
-        ob_start(); //start output buffer --- nada se renderiza en el browser se guarda en buffer interno
+        // El búfer de salida es un método para decirle al motor PHP que retenga los datos de salida antes de enviarlos al navegador.
+        ob_start(); //start output buffer --- nada se renderiza en el browser se guarda en el buffer de salida
         include_once Application::getROOTSOURCE() . "/views/layouts/Main.php";
-        return ob_get_clean();
+        return ob_get_clean(); //devuelve el contenido del buffer actual y borra el buffer de salida
     }
     protected function renderOnlyView($view)
     {
