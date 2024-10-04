@@ -9,7 +9,7 @@ class Application
     public Response $response;
     private static string $ROOT_PATH;
     private static array $CONFIGURATION;
-    public static $routerExposed;
+    private static $routerExposed;
 
     public function __construct(string $rootPath, array $config)
     {
@@ -41,5 +41,9 @@ class Application
     public static function getAPPNAME()
     {
         return self::$CONFIGURATION['APP_NAME'];
+    }
+    public static function getRouter()
+    {
+        return self::$routerExposed;
     }
 }
