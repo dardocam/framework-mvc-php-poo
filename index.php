@@ -16,6 +16,7 @@ $config = array(
 $app = new Application(dirname(__FILE__), $config);
 
 // $app->router->get('/', 'home');
+var_dump(SiteController::class);
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', 'contact');
 //de esta forma la funcion call_user_func($callback) recibe un array y entonces
