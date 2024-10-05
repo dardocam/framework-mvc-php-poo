@@ -35,7 +35,7 @@ class Router
     {
         //aqui nace la request class
         $path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             //aqui nace la reponse class
@@ -68,7 +68,7 @@ class Router
     {
         // El búfer de salida es un método para decirle al motor PHP que retenga los datos de salida antes de enviarlos al navegador.
         ob_start(); //start output buffer --- nada se renderiza en el browser se guarda en el buffer de salida
-        include_once Application::getROOTSOURCE() . "/views/layouts/Main.php";
+        include_once Application::getROOTSOURCE() . "views/layouts/Main.php";
         return ob_get_clean(); //devuelve el contenido del buffer actual y borra el buffer de salida
     }
     protected function renderOnlyView($view, $params)
@@ -79,7 +79,7 @@ class Router
         }
         ob_start();
         $view = ucwords($view);
-        include_once Application::getROOTSOURCE() . "/views/$view.php";
+        include_once Application::getROOTSOURCE() . "views/$view.php";
         return ob_get_clean();
     }
 }

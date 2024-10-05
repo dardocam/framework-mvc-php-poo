@@ -1,9 +1,5 @@
-<?php
-
-use app\core\Application;
-?>
 <h1>Contact View</h1>
-<form action="<?= Application::getROOTDIR() . 'contact' ?>" method="post">
+<form action="" method="post">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

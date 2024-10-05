@@ -9,7 +9,7 @@ class Application
     public Response $response;
     private static string $ROOT_PATH;
     private static array $CONFIGURATION;
-    private static $routerExposed;
+    private static Router $routerExposed;
 
     public function __construct(string $rootPath, array $config)
     {

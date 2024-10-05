@@ -15,8 +15,11 @@ class SiteController extends Controller
         return $this->render('home', $params);
     }
 
-    public static function handleContact(Request $request)
+    public function contact(Request $request)
     {
+        if ($request->isGet()) {
+            return $this->render('contact');
+        }
         $body = $request->getBody();
         var_dump($body);
         //now you can create validations... awesome!
