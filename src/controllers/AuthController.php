@@ -7,8 +7,11 @@ use app\core\Request;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
+        if ($request->isPost()) {
+            return 'handle submiting data';
+        }
         return $this->render('login');
     }
 
