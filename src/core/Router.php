@@ -73,7 +73,7 @@ class Router
     }
     protected function layoutContent()
     {
-        $layout = 'Main';
+        $layout = Application::$controller->layout;
         // El búfer de salida es un método para decirle al motor PHP que retenga los datos de salida antes de enviarlos al navegador.
         ob_start(); //start output buffer --- nada se renderiza en el browser se guarda en el buffer de salida
         include_once Application::getROOTSOURCE() . "views/layouts/$layout.php";
