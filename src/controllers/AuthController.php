@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 
@@ -17,6 +18,8 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        //Para cambiar el layout
+        //Application::$controller->layout = 'Auth'; 
         if ($request->isPost()) {
             return 'handle submiting data';
         }

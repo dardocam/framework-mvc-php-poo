@@ -10,11 +10,12 @@ class Application
     private static string $ROOT_PATH;
     private static array $CONFIGURATION;
     private static Router $routerExposed;
+    public static Controller $controller;
 
-    public function __construct(string $rootPath, array $config)
+    public function __construct(array $config)
     {
         self::$CONFIGURATION = $config;
-        self::$ROOT_PATH = $rootPath;
+        self::$ROOT_PATH = dirname(__DIR__, 2);
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
@@ -33,7 +34,7 @@ class Application
     {
         return self::$ROOT_PATH . '/src/';
     }
-    public static function getROOTDIR()
+    public static function formatRootPath()
     {
         $folders = explode('/', self::$ROOT_PATH);
         return '/' . $folders[count($folders) - 1] . '/';

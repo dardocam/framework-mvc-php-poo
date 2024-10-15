@@ -34,21 +34,28 @@ class Router
     public function resolve()
     {
         //aqui nace la request class
-        $path = $this->request->getPath();
+        $path = ($this->request->getPath() === '/' ? '/' : '/' . $this->request->getPath());
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             //aqui nace la reponse class
             $this->response->setStatusCode(404);
-            return $this->renderContent('404 Not Found');
+            return $this->renderContent('404 Not Fovvvund');
             // return "NOT FOUND";
         }
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            //instancia del controller
+            Application::$controller = new $callback[0]();
+            $callback[0] = Application::$controller;
         }
+
+        //$callback es un array que almacena dos strings, el nombre de la clase y el método
+        //le estamos pasando la instancia directamente. utilizamos el nombre para instanciarla
+        //tipo patrón factory .. instanciacion dinámica
+        //$this->request es un $args -> Argumentos adicionales que serán pasados al método o función cuando se invoque.
         return call_user_func($callback, $this->request);
     }
 
@@ -66,9 +73,10 @@ class Router
     }
     protected function layoutContent()
     {
+        $layout = 'Main';
         // El búfer de salida es un método para decirle al motor PHP que retenga los datos de salida antes de enviarlos al navegador.
         ob_start(); //start output buffer --- nada se renderiza en el browser se guarda en el buffer de salida
-        include_once Application::getROOTSOURCE() . "views/layouts/Main.php";
+        include_once Application::getROOTSOURCE() . "views/layouts/$layout.php";
         return ob_get_clean(); //devuelve el contenido del buffer actual y borra el buffer de salida
     }
     protected function renderOnlyView($view, $params)

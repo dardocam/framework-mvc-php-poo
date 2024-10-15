@@ -8,7 +8,7 @@ use app\core\Configuration;
 
 $config = new Configuration('Framework-PHP-POO-2024');
 
-$app = new Application(dirname(__FILE__), $config->getConfig());
+$app = new Application($config->getConfig());
 
 $app->router->get('/', [SiteController::class, 'home']);
 
