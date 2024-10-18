@@ -22,10 +22,14 @@ ___
 - **call_user_func**, es una función que llama a una función callback con un objeto como contexto y devuelve el resultado. Cuando se utiliza con objetos, call_user_func crea una instancia del objeto si no existe y llama al método especificado con ese objeto como contexto.
 - Ejemplo: 
     
+        //contruyendo la instancia
         $className = 'MyClass';
         $methodName = 'getMethod';
         $object = new $className();
         $result = call_user_func(array($object, $methodName));
+
+        //pasando solo el nombre de la clase
+        $result = call_user_func(array(MyClass::class, $methodName));
  
 
 # class Request
