@@ -32,7 +32,7 @@ ___
 - Tiene métodos para manejar el path y el http_method
 
 
-# class SiteCotroller
+# class SiteController
 - Hereda de Controller
 - Desde index.php se invoca a SiteController y se le envia el método que tiene que ejecutar
 ___
